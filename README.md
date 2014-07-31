@@ -16,6 +16,7 @@ To run with your own NGiNX site configuration file:
 ## Available Tags
 
 * `latest`: Currently NGiNX 1.6.0
+* `fips`: FIPS 140-2 "ready" NGiNX 1.6.0, with restricted cipher suite.
 
 ## Deployment
 
