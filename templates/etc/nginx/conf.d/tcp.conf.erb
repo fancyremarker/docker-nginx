@@ -1,0 +1,20 @@
+<% if ENV['PROTOCOL'] == 'tcp' %>
+stream {
+  <% if ENV['UPSTREAM_SERVERS'] %>
+  upstream containers {
+    <% (ENV['UPSTREAM_SERVERS']).split(',').each do |server| %>
+    server <%= server %>;
+    <% end %>
+  }
+  <% end %>
+
+  error_log /proc/self/fd/1;
+
+  server {
+    listen 9000;
+    <% if ENV['UPSTREAM_SERVERS'] %>
+    proxy_pass containers;
+    <% end %>
+  }
+}
+<% end %>

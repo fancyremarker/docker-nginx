@@ -45,6 +45,14 @@ IE 6 on Windows XP, which only fails because Qualys tests the default
 installation: if TLS 1.0 is enabled in IE 6, our configuration can be used to
 connect.
 
+### TCP proxies
+
+To use NGiNX as a proxy to TCP upstreams, just set the `PROTOCOL` environment variable to `tcp`:
+
+    docker run -P -e PROTOCOL=tcp UPSTREAM_SERVERS=host1:3000 quay.io/aptible/nginx
+
+The NGiNX container exposes all TCP servers on port 9000.
+
 ### Simulating trusted SSL connections
 
 If you're on OS X running boot2docker, you can configure your system to trust NGiNX's self-signed certificate by taking the following steps:
