@@ -25,6 +25,6 @@ RUN apk-install haproxy openssl-dev --repository http://dl-4.alpinelinux.org/alp
 
 VOLUME /etc/nginx/ssl
 
-EXPOSE 80 443 9000
+EXPOSE 80 443
 
 CMD ["/usr/local/bin/nginx-wrapper"]
