@@ -245,7 +245,7 @@ teardown() {
 }
 
 @test "It supports GZIP compression of responses" {
-  simulate_upstream
+  simulate_http_upstream
   UPSTREAM_SERVERS=localhost:4000 wait_for_nginx
   curl -H "Accept-Encoding: gzip" localhost | gunzip -c | grep "Hello World!"
 }
