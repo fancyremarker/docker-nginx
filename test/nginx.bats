@@ -112,7 +112,7 @@ teardown() {
 
 @test "It should work with PROTOCOL=tcp" {
   simulate_tcp_upstream
-  PROTOCOL=tcp UPSTREAM_SERVERS=localhost:4000 wait_for_nginx
+  PROTOCOL=tcp UPSTREAM_SERVER_PORTS=9000 UPSTREAM_SERVERS_9000=localhost:4000 wait_for_nginx
   run nc localhost 9000 2>&1
 
   # There should be no errors in the NGiNX log file

@@ -47,11 +47,14 @@ connect.
 
 ### TCP proxies
 
-To use NGiNX as a proxy to TCP upstreams, just set the `PROTOCOL` environment variable to `tcp`:
+To use NGiNX as a proxy to TCP upstreams, just set the `PROTOCOL` environment variable to `tcp`, and specify the following additional environment variables:
 
-    docker run -P -e PROTOCOL=tcp UPSTREAM_SERVERS=host1:3000 quay.io/aptible/nginx
+* `UPSTREAM_SERVER_PORTS`: A comma-separated array of ports on which NGiNX should listen.
+* `UPSTREAM_SERVERS_#{port}`: A comma-separated array of upstreams that the listener on port `port` should proxy to. There should be one such value configured for each entry in `UPSTREAM_SERVER_PORTS`.
 
-The NGiNX container exposes all TCP servers on port 9000.
+For example, the following invocation will run an NGiNX server listening on port 9000 and proxying requests to host1:3000:
+
+    docker run -P -e PROTOCOL=tcp UPSTREAM_SERVER_PORTS=9000 UPSTREAM_SERVERS_9000=host1:3000 quay.io/aptible/nginx
 
 ### Simulating trusted SSL connections
 
